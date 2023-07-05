@@ -1,7 +1,7 @@
 package com.integerlimit.deprecatedapi;
 
-import com.integerlimit.deprecatedapi.deprecation.DeprecatedBlocks;
-import com.integerlimit.deprecatedapi.deprecation.DeprecatedItems;
+import com.integerlimit.deprecatedapi.api.DeprecatedBlocks;
+import com.integerlimit.deprecatedapi.api.DeprecatedItems;
 import com.integerlimit.deprecatedapi.integration.Registry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;

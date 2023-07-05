@@ -1,7 +1,7 @@
 package com.integerlimit.deprecatedapi.integration.hwyla;
 
-import com.integerlimit.deprecatedapi.deprecation.DeprecatedBlock;
-import com.integerlimit.deprecatedapi.deprecation.DeprecatedBlocks;
+import com.integerlimit.deprecatedapi.api.DeprecatedBlock;
+import com.integerlimit.deprecatedapi.api.DeprecatedBlocks;
 import mcp.mobius.waila.api.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;

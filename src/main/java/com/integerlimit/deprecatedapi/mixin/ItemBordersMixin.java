@@ -2,7 +2,7 @@ package com.integerlimit.deprecatedapi.mixin;
 
 import com.anthonyhilyard.itemborders.config.ItemBordersConfig;
 import com.anthonyhilyard.itemborders.util.ColorUtil;
-import com.integerlimit.deprecatedapi.deprecation.DeprecatedItems;
+import com.integerlimit.deprecatedapi.api.DeprecatedItems;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Mixin;

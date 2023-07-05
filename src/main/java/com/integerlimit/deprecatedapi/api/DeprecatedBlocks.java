@@ -1,4 +1,4 @@
-package com.integerlimit.deprecatedapi.deprecation;
+package com.integerlimit.deprecatedapi.api;
 
 
 import com.integerlimit.deprecatedapi.DeprecatedApi;

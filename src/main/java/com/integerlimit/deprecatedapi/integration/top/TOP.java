@@ -1,8 +1,8 @@
 package com.integerlimit.deprecatedapi.integration.top;
 
 import com.integerlimit.deprecatedapi.Tags;
-import com.integerlimit.deprecatedapi.deprecation.DeprecatedBlock;
-import com.integerlimit.deprecatedapi.deprecation.DeprecatedBlocks;
+import com.integerlimit.deprecatedapi.api.DeprecatedBlock;
+import com.integerlimit.deprecatedapi.api.DeprecatedBlocks;
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.api.*;
 import net.minecraft.block.Block;

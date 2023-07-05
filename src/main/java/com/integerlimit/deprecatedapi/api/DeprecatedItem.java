@@ -1,4 +1,4 @@
-package com.integerlimit.deprecatedapi.deprecation;
+package com.integerlimit.deprecatedapi.api;
 
 /**
  * A deprecated item. Has a tooltip message.

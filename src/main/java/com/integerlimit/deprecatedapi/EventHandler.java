@@ -1,7 +1,7 @@
 package com.integerlimit.deprecatedapi;
 
-import com.integerlimit.deprecatedapi.deprecation.DeprecatedItem;
-import com.integerlimit.deprecatedapi.deprecation.DeprecatedItems;
+import com.integerlimit.deprecatedapi.api.DeprecatedItem;
+import com.integerlimit.deprecatedapi.api.DeprecatedItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;

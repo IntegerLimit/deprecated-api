@@ -1,4 +1,4 @@
-package com.integerlimit.deprecatedapi.deprecation;
+package com.integerlimit.deprecatedapi.api;
 
 /**
  * A deprecated block. Has a TOP/WAILA tooltip + all tooltips in DeprecatedItem Object.
