@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 public class ItemBordersMixin {
     @Inject(method = "getBorderColorForItem", at = @At("HEAD"), cancellable = true)
     public void setRedBorder(ItemStack item, CallbackInfoReturnable<Pair<Supplier<Integer>, Supplier<Integer>>> cir) {
-        if (DeprecatedItems.getItem(item.getItem().getRegistryName(), item.getMetadata()) != null) {
+        if (DeprecatedItems.getItem(item.getItem(), item.getMetadata()) != null) {
             int color = ColorUtil.parseColor("red");
             cir.setReturnValue(Pair.of(() -> color, () -> color));
         }

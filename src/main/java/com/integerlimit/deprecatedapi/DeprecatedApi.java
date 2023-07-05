@@ -3,7 +3,9 @@ package com.integerlimit.deprecatedapi;
 import com.integerlimit.deprecatedapi.api.DeprecatedBlocks;
 import com.integerlimit.deprecatedapi.api.DeprecatedItems;
 import com.integerlimit.deprecatedapi.integration.Registry;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -37,14 +39,15 @@ public class DeprecatedApi {
     @SuppressWarnings("unused")
     public void postInit(FMLPostInitializationEvent event) {
         Registry.init();
+
         /* Tests */
-        DeprecatedItems.addDeprecatedItem(new ResourceLocation("minecraft:cooked_beef")).setTooltipMessage("Steak Sucks!");
-        DeprecatedBlocks.addDeprecatedBlock(new ResourceLocation("minecraft:dirt")).setTOPWailaMessage("Use Coarse Dirt instead!").setTooltipMessage("Dirt Sucks!");
-        DeprecatedItems.addDeprecatedItem(new ResourceLocation("minecraft:diamond_sword"));
-        DeprecatedBlocks.addDeprecatedBlock(new ResourceLocation("minecraft:concrete")).setMessages("Concrete is disabled for now.");
-        DeprecatedBlocks.addDeprecatedBlock(new ResourceLocation("minecraft:concrete"), 1).setMessages("This Concrete is disabled forever.");
-        DeprecatedBlocks.addDeprecatedBlock(new ResourceLocation("minecraft:stone")).setMessages("Dead");
-        DeprecatedItems.addDeprecatedItem(new ResourceLocation("minecraft:stone_sword")).setTooltipMessage("Worst");
+        DeprecatedItems.addDeprecatedItem(Items.COOKED_BEEF).setTooltipMessage("Steak Sucks!");
+        DeprecatedBlocks.addDeprecatedBlock(Blocks.DIRT).setTOPWailaMessage("Use Coarse Dirt instead!").setTooltipMessage("Dirt Sucks!");
+        DeprecatedItems.addDeprecatedItem(Items.DIAMOND_SWORD);
+        DeprecatedBlocks.addDeprecatedBlock(Blocks.CONCRETE).setMessages("Concrete is disabled for now.");
+        DeprecatedBlocks.addDeprecatedBlock(Blocks.CONCRETE, 1).setMessages("This Concrete is disabled forever.");
+        DeprecatedBlocks.addDeprecatedBlock(Blocks.STONE).setMessages("Dead");
+        DeprecatedItems.addDeprecatedItem(Items.STONE_SWORD).setTooltipMessage("Worst");
     }
 
     /* Might be wanted later if making command for reload

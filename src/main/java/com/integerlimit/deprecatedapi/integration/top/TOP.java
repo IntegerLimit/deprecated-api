@@ -25,10 +25,10 @@ public class TOP {
 
         @Override
         public void addProbeInfo(ProbeMode probeMode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData probeHitData) {
-            Block sourceBlock = blockState.getBlock();
-            DeprecatedBlock block = DeprecatedBlocks.getBlock(sourceBlock.getRegistryName(), sourceBlock.getMetaFromState(blockState));
-            if (block != null) {
-                String text = TextFormatting.RED + IProbeInfo.STARTLOC + block.getTOPWailaMessage() + IProbeInfo.ENDLOC;
+            Block block = blockState.getBlock();
+            DeprecatedBlock deprecatedBlock = DeprecatedBlocks.getBlock(block, block.getMetaFromState(blockState));
+            if (deprecatedBlock != null) {
+                String text = TextFormatting.RED + IProbeInfo.STARTLOC + deprecatedBlock.getTOPWailaMessage() + IProbeInfo.ENDLOC;
                 probeInfo.text(text);
             }
         }

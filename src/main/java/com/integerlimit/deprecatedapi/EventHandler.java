@@ -14,7 +14,7 @@ public class EventHandler {
     @SuppressWarnings("unused")
     public void tooltipEvent(ItemTooltipEvent event) {
         ItemStack itemStack = event.getItemStack();
-        DeprecatedItem item = DeprecatedItems.getItem(itemStack.getItem().getRegistryName(), itemStack.getMetadata());
+        DeprecatedItem item = DeprecatedItems.getItem(itemStack.getItem(), itemStack.getMetadata());
         if (item != null) {
             event.getToolTip().add(TextFormatting.RED + item.getTooltipMessage());
         }

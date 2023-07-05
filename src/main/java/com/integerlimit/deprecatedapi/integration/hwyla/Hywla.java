@@ -30,7 +30,7 @@ public class Hywla implements IWailaPlugin {
         @NotNull
         @Override
         public List<String> getWailaTail(ItemStack itemStack, List<String> tooltip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-            DeprecatedBlock block = DeprecatedBlocks.getBlock(itemStack.getItem().getRegistryName(), itemStack.getMetadata());
+            DeprecatedBlock block = DeprecatedBlocks.getBlock(Block.getBlockFromItem(itemStack.getItem()), itemStack.getMetadata());
             if (block != null)
                 tooltip.add(TextFormatting.RED + block.getTOPWailaMessage());
             return tooltip;
