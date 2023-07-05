@@ -1,3 +1,5 @@
+//file:noinspection DependencyNotationArgument
+
 dependencies {
     // Soft deps (JEI and TOP can be automatically added, but we do it this way to add the debug option)
     if (project.debug_jei.toBoolean()) {
