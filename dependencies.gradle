@@ -19,5 +19,12 @@ dependencies {
     }
     if (project.debug_item_borders.toBoolean()) {
         implementation rfg.deobf("curse.maven:item-borders-513769:${item_borders_file_id}")
+    } else {
+        compileOnly rfg.deobf("curse.maven:item-borders-513769:${item_borders_file_id}")
+    }
+    if (project.debug_crafttweaker.toBoolean()) {
+        implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweaker_version}"
+    } else {
+        compileOnly "CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweaker_version}"
     }
 }
