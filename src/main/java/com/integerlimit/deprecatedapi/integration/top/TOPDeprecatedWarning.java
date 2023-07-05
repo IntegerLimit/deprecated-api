@@ -7,6 +7,7 @@ import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
 import mcjty.theoneprobe.api.IProbeInfoProvider;
 import mcjty.theoneprobe.api.ProbeMode;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextFormatting;
@@ -20,7 +21,8 @@ public class TOPDeprecatedWarning implements IProbeInfoProvider {
 
     @Override
     public void addProbeInfo(ProbeMode probeMode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData probeHitData) {
-        DeprecatedBlock block = DeprecatedBlocks.getBlock(blockState.getBlock().getRegistryName());
+        Block sourceBlock = blockState.getBlock();
+        DeprecatedBlock block = DeprecatedBlocks.getBlock(sourceBlock.getRegistryName(), sourceBlock.getMetaFromState(blockState));
         if (block != null) {
             String text = TextFormatting.RED + IProbeInfo.STARTLOC + block.getTOPWailaMessage() + IProbeInfo.ENDLOC;
             probeInfo.text(text);

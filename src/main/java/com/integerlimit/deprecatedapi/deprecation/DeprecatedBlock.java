@@ -8,6 +8,7 @@ public class DeprecatedBlock extends DeprecatedItem{
 
     @SuppressWarnings("unused")
     public DeprecatedBlock() {
+        super();
         TOPWailaMessage = defaultMessage;
     }
 
