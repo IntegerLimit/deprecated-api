@@ -5,7 +5,7 @@ dependencies {
     } else {
         compileOnly rfg.deobf("curse.maven:jei-238222:${jei_file_id}")
     }
-    if (project.debug_waila.toBoolean()) {
+    if (project.debug_hwyla.toBoolean()) {
         implementation rfg.deobf("curse.maven:hwyla-253449:${hwyla_file_id}")
     } else {
         compileOnly rfg.deobf("curse.maven:hwyla-253449:${hwyla_file_id}")
@@ -14,5 +14,8 @@ dependencies {
         implementation rfg.deobf("curse.maven:the-one-probe-245211:${top_file_id}")
     } else {
         compileOnly rfg.deobf("curse.maven:the-one-probe-245211:${top_file_id}")
+    }
+    if (project.debug_item_borders.toBoolean()) {
+        implementation rfg.deobf("curse.maven:item-borders-513769:${item_borders_file_id}")
     }
 }
