@@ -1,7 +1,7 @@
 [{
     "modid": "${modid}",
     "name": "${modname}",
-    "description": "An example mod for Minecraft 1.12.2 with Forge",
+    "description": "An api for GroovyScript, other mods, and perhaps CraftTweaker later on, to mark items (and perhaps recipes) as deprecated.",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "logoFile": "",

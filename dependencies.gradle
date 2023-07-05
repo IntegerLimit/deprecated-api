@@ -1,26 +1,18 @@
-//file:noinspection DependencyNotationArgument
-// TODO remove when fixed in RFG ^
-/*
- * Add your dependencies here. Common configurations:
- *  - implementation("group:name:version:classifier"): if you need this for internal implementation details of the mod.
- *       Available at compiletime and runtime for your environment.
- *
- *  - compileOnlyApi("g:n:v:c"): if you need this for internal implementation details of the mod.
- *       Available at compiletime but not runtime for your environment.
- *
- *  - annotationProcessor("g:n:v:c"): mostly for java compiler plugins, if you know you need this, use it, otherwise don't worry
- *
- *  - testCONFIG("g:n:v:c"): replace CONFIG by one of the above, same as above but for the test sources instead of main
- *
- * You can exclude transitive dependencies (dependencies of the chosen dependency) by appending { transitive = false } if needed.
- *
- * To add a mod with CurseMaven, replace '("g:n:v:c")' in the above with 'rfg.deobf("curse.maven:project_slug-project_id:file_id")'
- * Example: implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4527757")
- *
- * To shadow a dependency, use 'shadowImplementation'. For more info, see https://github.com/GregTechCEu/Buildscripts/blob/master/docs/shadow.md
- *
- * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
- */
 dependencies {
-
+    // Soft deps (JEI and TOP can be automatically added, but we do it this way to add the debug option)
+    if (project.debug_jei.toBoolean()) {
+        implementation rfg.deobf("curse.maven:jei-238222:${jei_file_id}")
+    } else {
+        compileOnly rfg.deobf("curse.maven:jei-238222:${jei_file_id}")
+    }
+    if (project.debug_waila.toBoolean()) {
+        implementation rfg.deobf("curse.maven:hwyla-253449:${hwyla_file_id}")
+    } else {
+        compileOnly rfg.deobf("curse.maven:hwyla-253449:${hwyla_file_id}")
+    }
+    if (project.debug_top.toBoolean()) {
+        implementation rfg.deobf("curse.maven:the-one-probe-245211:${top_file_id}")
+    } else {
+        compileOnly rfg.deobf("curse.maven:the-one-probe-245211:${top_file_id}")
+    }
 }
