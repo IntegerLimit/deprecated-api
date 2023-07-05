@@ -1,6 +1,7 @@
 package com.integerlimit.deprecatedapi.integration.top;
 
-import com.integerlimit.deprecatedapi.DeprecatedBlocks;
+import com.integerlimit.deprecatedapi.deprecation.DeprecatedBlock;
+import com.integerlimit.deprecatedapi.deprecation.DeprecatedBlocks;
 import com.integerlimit.deprecatedapi.Tags;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
@@ -19,9 +20,9 @@ public class TOPDeprecatedWarning implements IProbeInfoProvider {
 
     @Override
     public void addProbeInfo(ProbeMode probeMode, IProbeInfo probeInfo, EntityPlayer player, World world, IBlockState blockState, IProbeHitData probeHitData) {
-        if (probeHitData.getPickBlock() != null &&
-                DeprecatedBlocks.blockDisabled(blockState.getBlock().getRegistryName())) {
-            String text = TextFormatting.RED + IProbeInfo.STARTLOC + "Deprecated" + IProbeInfo.ENDLOC;
+        DeprecatedBlock block = DeprecatedBlocks.getBlock(blockState.getBlock().getRegistryName());
+        if (block != null) {
+            String text = TextFormatting.RED + IProbeInfo.STARTLOC + block.getTOPWailaMessage() + IProbeInfo.ENDLOC;
             probeInfo.text(text);
         }
     }

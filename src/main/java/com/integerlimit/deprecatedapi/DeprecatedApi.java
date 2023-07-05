@@ -1,5 +1,8 @@
 package com.integerlimit.deprecatedapi;
 
+import com.integerlimit.deprecatedapi.deprecation.DeprecatedBlock;
+import com.integerlimit.deprecatedapi.deprecation.DeprecatedBlocks;
+import com.integerlimit.deprecatedapi.deprecation.DeprecatedItems;
 import com.integerlimit.deprecatedapi.integration.Registry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,8 +39,12 @@ public class DeprecatedApi {
     public void postInit(FMLPostInitializationEvent event) {
         Registry.init();
         /* Tests */
-        DeprecatedItems.addDeprecatedItem(new ResourceLocation("minecraft:cooked_beef"));
-        DeprecatedBlocks.addDeprecatedBlock(new ResourceLocation("minecraft:dirt"));
+        DeprecatedItems.addDeprecatedItem(new ResourceLocation("minecraft:cooked_beef")).setTooltipMessage("Steak Sucks!");
+        DeprecatedBlocks.addDeprecatedBlock(new ResourceLocation("minecraft:dirt")).setTOPWailaMessage("Use Coarse Dirt instead!").setTooltipMessage("Dirt Sucks!");
+        DeprecatedItems.addDeprecatedItem(new ResourceLocation("minecraft:diamond_sword"));
+        DeprecatedBlocks.addDeprecatedBlock(new ResourceLocation("minecraft:concrete")).setMessages("Concrete is disabled forever.");
+        DeprecatedBlocks.addDeprecatedBlock(new ResourceLocation("minecraft:stone"), new DeprecatedBlock().setMessages("Dead"));
+        DeprecatedItems.addDeprecatedItem(new ResourceLocation("minecraft:stone_sword"), new DeprecatedBlock().setTooltipMessage("Dead"));
     }
 
     /* Might be wanted later if making command for reload
