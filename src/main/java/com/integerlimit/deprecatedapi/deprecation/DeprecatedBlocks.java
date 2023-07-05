@@ -29,7 +29,7 @@ public class DeprecatedBlocks {
     public static void addDeprecatedBlock(Pair<ResourceLocation, Integer> locationMetaPair, DeprecatedBlock block) {
         DeprecatedItems.addDeprecatedItem(locationMetaPair, block);
         blocks.put(locationMetaPair, block);
-        DeprecatedApi.LOGGER.info("[DeprecatedAPI]: Block with resource location " + locationMetaPair.getLeft() + " has been marked as deprecated.");
+        DeprecatedApi.LOGGER.info("Block with resource location " + locationMetaPair.getLeft() + " has been marked as deprecated.");
     }
 
     /**

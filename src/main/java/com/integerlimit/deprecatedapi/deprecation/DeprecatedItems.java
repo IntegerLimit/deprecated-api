@@ -27,7 +27,7 @@ public class DeprecatedItems {
     @SuppressWarnings("unused")
     public static void addDeprecatedItem(Pair<ResourceLocation, Integer> locationMetaPair, DeprecatedItem item) {
         items.put(locationMetaPair, item);
-        DeprecatedApi.LOGGER.info("[DeprecatedAPI]: Item with resource location " + locationMetaPair.getLeft() + " has been marked as deprecated.");
+        DeprecatedApi.LOGGER.info("Item with resource location " + locationMetaPair.getLeft() + " has been marked as deprecated.");
     }
 
     /**
