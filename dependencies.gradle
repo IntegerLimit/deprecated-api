@@ -17,14 +17,17 @@ dependencies {
     } else {
         compileOnly rfg.deobf("curse.maven:the-one-probe-245211:${top_file_id}")
     }
-    if (project.debug_item_borders.toBoolean()) {
-        implementation rfg.deobf("curse.maven:item-borders-513769:${item_borders_file_id}")
-    } else {
-        compileOnly rfg.deobf("curse.maven:item-borders-513769:${item_borders_file_id}")
-    }
     if (project.debug_crafttweaker.toBoolean()) {
         implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweaker_version}"
     } else {
         compileOnly "CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweaker_version}"
+    }
+    // Local jar for groovy
+    if (project.debug_groovyscript.toBoolean()) {
+        implementation files("libs/groovyscript-0.5.1.jar")
+        // implementation rfg.deobf("curse.maven:groovyscript-687577:${groovyscript_file_id}") // issues run time
+    } else {
+        compileOnly files("libs/groovyscript-0.5.1.jar")
+        // compileOnly rfg.deobf("curse.maven:groovyscript-687577:${groovyscript_file_id}") // issues run time
     }
 }

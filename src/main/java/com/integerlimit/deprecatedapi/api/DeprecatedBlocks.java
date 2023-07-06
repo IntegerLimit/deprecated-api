@@ -1,10 +1,11 @@
 package com.integerlimit.deprecatedapi.api;
 
 
-import com.integerlimit.deprecatedapi.DeprecatedApi;
+import com.integerlimit.deprecatedapi.DeprecatedAPI;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
@@ -28,10 +29,14 @@ public class DeprecatedBlocks {
 
     @SuppressWarnings("unused")
     public static void addDeprecatedBlock(Pair<Block, Integer> blockMetaPair, DeprecatedBlock block) {
+        if (DeprecatedAPI.pastPostInit()) {
+            DeprecatedAPI.LOGGER.fatal("Could not deprecate block " + blockMetaPair.getLeft().getRegistryName() + " as this must be done before postInit!");
+        }
+
         DeprecatedItems.addDeprecatedItem(
                 Pair.of(Item.getItemFromBlock(blockMetaPair.getLeft()), blockMetaPair.getRight()), block);
         blocks.put(blockMetaPair, block);
-        DeprecatedApi.LOGGER.info("Block with resource location " + blockMetaPair.getLeft().getRegistryName() + " has been marked as deprecated.");
+        DeprecatedAPI.LOGGER.info("Block with resource location " + blockMetaPair.getLeft().getRegistryName() + " has been marked as deprecated.");
     }
 
     /**
@@ -49,5 +54,25 @@ public class DeprecatedBlocks {
             deprecatedBlock = blocks.get(Pair.of(block, WILDCARD_META));
 
         return deprecatedBlock;
+    }
+
+    public static void logDeprecations() {
+        if (blocks.isEmpty())
+            DeprecatedAPI.LOGGER.warn("DeprecatedAPI is installed, but there are no deprecated blocks detected.");
+
+        DeprecatedAPI.LOGGER.warn("DeprecatedAPI is installed. The following blocks are deprecated:");
+
+        blocks.forEach((key, value) -> sayDeprecated(key.getLeft().getRegistryName(), key.getRight())
+        );
+
+        DeprecatedAPI.LOGGER.warn("End Deprecated Blocks.");
+    }
+
+    private static void sayDeprecated(ResourceLocation name, int meta) {
+        if (meta == WILDCARD_META)
+            DeprecatedAPI.LOGGER.warn("Registry Name: {}, with any meta.", name);
+
+        else
+            DeprecatedAPI.LOGGER.warn("Registry Name: {}, with meta {}.", name, meta);
     }
 }
