@@ -7,4 +7,4 @@ An api for GroovyScript, other mods, and CraftTweaker later on, to mark items (a
 
 ## Deprecated Items have:
 - Tooltip
-- Red Border, when Item Borders is installed
+- Red Item Name, and a Red Border, when Item Borders is installed
