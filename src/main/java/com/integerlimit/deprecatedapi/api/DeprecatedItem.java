@@ -9,6 +9,7 @@ public class DeprecatedItem {
     public static final String defaultMessage = "Deprecated";
     private String tooltipMessage;
     protected ItemStack stack = ItemStack.EMPTY;
+    protected int meta = 0;
 
     @SuppressWarnings("unused")
     public DeprecatedItem() {
@@ -27,8 +28,9 @@ public class DeprecatedItem {
         return this;
     }
 
-    public DeprecatedItem setItem(ItemStack item) {
+    public DeprecatedItem setItem(ItemStack item, int meta) {
         this.stack = item;
+        this.meta = meta;
         return this;
     }
 
@@ -37,6 +39,6 @@ public class DeprecatedItem {
     }
 
     public boolean matches(ItemStack item) {
-        return stack.getItemDamage() == DeprecatedItems.WILDCARD_META ? ItemStack.areItemsEqualIgnoreDurability(stack, item) : ItemStack.areItemStacksEqual(stack, item);
+        return meta == DeprecatedItems.WILDCARD_META ? item.getItem() == stack.getItem() : ItemStack.areItemStacksEqual(stack, item);
     }
 }

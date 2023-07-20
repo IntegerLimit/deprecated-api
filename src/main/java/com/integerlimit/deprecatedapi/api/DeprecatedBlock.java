@@ -24,7 +24,7 @@ public class DeprecatedBlock extends DeprecatedItem{
 
     public DeprecatedBlock setBlock(Block block, int meta) {
         this.block = block;
-        this.setItem(new ItemStack(block, 1, meta));
+        this.setItem(new ItemStack(block, 1, meta), meta);
         return this;
     }
 
@@ -34,7 +34,7 @@ public class DeprecatedBlock extends DeprecatedItem{
     }
 
     public boolean matches(Block block, int meta) {
-        return this.stack.getItemDamage() == DeprecatedItems.WILDCARD_META ? Block.isEqualTo(block, this.block) : (Block.isEqualTo(block, this.block) && meta == stack.getItemDamage());
+        return this.meta == DeprecatedItems.WILDCARD_META ? Block.isEqualTo(block, this.block) : (Block.isEqualTo(block, this.block) && meta == this.meta);
     }
 
     @Override

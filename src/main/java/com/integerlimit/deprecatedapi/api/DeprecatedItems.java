@@ -20,13 +20,13 @@ public class DeprecatedItems {
 
     @SuppressWarnings({"unused", "UnusedReturnValue"})
     public static DeprecatedItem addDeprecatedItem(Item item, int meta) {
-        DeprecatedItem deprecatedItem = new DeprecatedItem().setItem(new ItemStack(item, 1, meta));
+        DeprecatedItem deprecatedItem = new DeprecatedItem().setItem(new ItemStack(item, 1, meta), meta);
         addDeprecatedItem(deprecatedItem);
         return deprecatedItem;
     }
 
     public static DeprecatedItem addDeprecatedItem(ItemStack item) {
-        DeprecatedItem deprecatedItem = new DeprecatedItem().setItem(item);
+        DeprecatedItem deprecatedItem = new DeprecatedItem().setItem(item, item.getItemDamage());
         addDeprecatedItem(deprecatedItem);
         return deprecatedItem;
     }
