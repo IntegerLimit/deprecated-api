@@ -52,7 +52,10 @@ public class DeprecatedItems {
      */
     @Nullable
     public static DeprecatedItem getItem(ItemStack item) {
-        return items.stream().filter((dep) -> dep.matches(item)).findFirst().orElse(null);
+        DeprecatedItem found = items.stream().filter((dep) -> dep.matches(item, item.getItemDamage())).findFirst().orElse(null);
+        if (found == null) found = items.stream().filter((dep) -> dep.matches(item, -1)).findFirst().orElse(null);
+
+        return found;
     }
 
     public static void logDeprecations() {

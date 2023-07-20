@@ -34,7 +34,7 @@ public class DeprecatedBlock extends DeprecatedItem{
     }
 
     public boolean matches(Block block, int meta) {
-        return this.meta == DeprecatedItems.WILDCARD_META ? Block.isEqualTo(block, this.block) : (Block.isEqualTo(block, this.block) && meta == this.meta);
+        return meta == DeprecatedItems.WILDCARD_META ? Block.isEqualTo(block, this.block) : (Block.isEqualTo(block, this.block) && meta == this.meta);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class DeprecatedItem {
         return tooltipMessage;
     }
 
-    public boolean matches(ItemStack item) {
+    public boolean matches(ItemStack item, int meta) {
         return meta == DeprecatedItems.WILDCARD_META ? item.getItem() == stack.getItem() : ItemStack.areItemStacksEqual(stack, item);
     }
 }
