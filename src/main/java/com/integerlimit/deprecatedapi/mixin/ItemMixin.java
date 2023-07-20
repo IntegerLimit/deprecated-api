@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class ItemMixin {
     @Inject(method = "getForgeRarity", at = @At("HEAD"), cancellable = true, remap = false)
     private void setDeprecatedRarity(ItemStack stack, CallbackInfoReturnable<IRarity> cir) {
-        if (DeprecatedItems.getItem(stack.getItem(), stack.getMetadata()) != null) {
+        if (DeprecatedItems.getItem(stack) != null) {
             DeprecatedAPI.LOGGER.debug("Set Item " + stack.getItem().getRegistryName()
                     + ", with meta " + stack.getMetadata() + " to Deprecated Rarity.");
             cir.setReturnValue(DeprecatedRarity.DEPRECATED_RARITY);
