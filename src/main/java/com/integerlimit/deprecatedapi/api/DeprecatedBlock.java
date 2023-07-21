@@ -1,10 +1,14 @@
 package com.integerlimit.deprecatedapi.api;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+
 /**
  * A deprecated block. Has a TOP/WAILA tooltip + all tooltips in DeprecatedItem Object.
  */
 public class DeprecatedBlock extends DeprecatedItem{
     private String TOPWailaMessage;
+    protected Block block;
 
     @SuppressWarnings("unused")
     public DeprecatedBlock() {
@@ -18,9 +22,19 @@ public class DeprecatedBlock extends DeprecatedItem{
         return this;
     }
 
+    public DeprecatedBlock setBlock(Block block, int meta) {
+        this.block = block;
+        this.setItem(new ItemStack(block, 1, meta), meta);
+        return this;
+    }
+
     @SuppressWarnings("unused")
     public String getTOPWailaMessage() {
         return TOPWailaMessage;
+    }
+
+    public boolean matches(Block block, int meta) {
+        return meta == DeprecatedItems.WILDCARD_META ? Block.isEqualTo(block, this.block) : (Block.isEqualTo(block, this.block) && meta == this.meta);
     }
 
     @Override

@@ -1,16 +1,16 @@
 package com.integerlimit.deprecatedapi.api;
 
 import com.integerlimit.deprecatedapi.DeprecatedAPI;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DeprecatedItems {
-    private static final Map<Pair<Item, Integer>, DeprecatedItem> items = new Object2ObjectOpenHashMap<>();
+    private static final List<DeprecatedItem> items = new ArrayList<>();
     public static final int WILDCARD_META = -1;
 
     @SuppressWarnings({"unused", "UnusedReturnValue"})
@@ -20,37 +20,42 @@ public class DeprecatedItems {
 
     @SuppressWarnings({"unused", "UnusedReturnValue"})
     public static DeprecatedItem addDeprecatedItem(Item item, int meta) {
-        DeprecatedItem deprecatedItem = new DeprecatedItem();
-        addDeprecatedItem(Pair.of(item, meta), deprecatedItem);
+        DeprecatedItem deprecatedItem = new DeprecatedItem().setItem(new ItemStack(item, 1, meta), meta);
+        addDeprecatedItem(deprecatedItem);
+        return deprecatedItem;
+    }
+
+    public static DeprecatedItem addDeprecatedItem(ItemStack item) {
+        DeprecatedItem deprecatedItem = new DeprecatedItem().setItem(item, item.getMetadata());
+        addDeprecatedItem(deprecatedItem);
         return deprecatedItem;
     }
 
     @SuppressWarnings("unused")
-    public static void addDeprecatedItem(Pair<Item, Integer> itemMetaPair, DeprecatedItem item) {
+    public static void addDeprecatedItem(DeprecatedItem item) {
+        if (item.stack.isEmpty()) {
+            DeprecatedAPI.LOGGER.fatal("Could not deprecate item as you can't deprecate an empty item.");
+            return;
+        }
         if (DeprecatedAPI.pastPostInit()) {
-            DeprecatedAPI.LOGGER.fatal("Could not deprecate item " + itemMetaPair.getLeft().getRegistryName() + " as this must be done before postInit!");
+            DeprecatedAPI.LOGGER.fatal("Could not deprecate item " + item.stack.getItem().getRegistryName() + " as this must be done before postInit!");
             return;
         }
 
-        items.put(itemMetaPair, item);
-        DeprecatedAPI.LOGGER.info("Item " + itemMetaPair.getLeft().getRegistryName() + " has been marked as deprecated.");
+        items.add(item);
+        DeprecatedAPI.LOGGER.info("Item " + item.stack.getItem().getRegistryName() + " has been marked as deprecated.");
     }
 
     /**
-     * @param item The Item.
-     * @param meta The Meta. Usually found from the ItemStack.
+     * @param item The Item
      * @return Null if not deprecated, otherwise, the DeprecatedItem Object.
      */
     @Nullable
-    public static DeprecatedItem getItem(Item item, int meta) {
-        // Check proper meta first
-        DeprecatedItem deprecatedItem = items.get(Pair.of(item, meta));
+    public static DeprecatedItem getItem(ItemStack item) {
+        DeprecatedItem found = items.stream().filter((dep) -> dep.matches(item, item.getMetadata())).findFirst().orElse(null);
+        if (found == null) found = items.stream().filter((dep) -> dep.matches(item, WILDCARD_META)).findFirst().orElse(null);
 
-        // If not exist, use wild meta
-        if (deprecatedItem == null)
-            deprecatedItem = items.get(Pair.of(item, WILDCARD_META));
-
-        return deprecatedItem;
+        return found;
     }
 
     public static void logDeprecations() {
@@ -59,8 +64,7 @@ public class DeprecatedItems {
 
         DeprecatedAPI.LOGGER.warn("DeprecatedAPI is installed. The following items are deprecated:");
 
-        items.forEach((key, value) -> sayDeprecated(key.getLeft().getRegistryName(), key.getRight())
-        );
+        items.forEach((dep) -> sayDeprecated(dep.stack.getItem().getRegistryName(), dep.stack.getMetadata()));
 
         DeprecatedAPI.LOGGER.warn("End Deprecated Items.");
     }

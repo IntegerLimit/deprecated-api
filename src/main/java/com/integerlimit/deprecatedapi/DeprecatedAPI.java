@@ -43,6 +43,8 @@ public class DeprecatedAPI {
         DeprecatedBlocks.addDeprecatedBlock(Blocks.CONCRETE, 1).setMessages("This Concrete is disabled forever.");
         DeprecatedBlocks.addDeprecatedBlock(Blocks.STONE).setMessages("Dead");
         DeprecatedItems.addDeprecatedItem(Items.STONE_SWORD).setTooltipMessage("Worst");
+        DeprecatedItems.addDeprecatedItem(Items.COAL).setTooltipMessage("HOT!!!");
+        DeprecatedItems.addDeprecatedItem(Items.COAL, 1).setTooltipMessage("wood");
     }
 
     @Mod.EventHandler
