@@ -26,7 +26,7 @@ public class DeprecatedItems {
     }
 
     public static DeprecatedItem addDeprecatedItem(ItemStack item) {
-        DeprecatedItem deprecatedItem = new DeprecatedItem().setItem(item, item.getItemDamage());
+        DeprecatedItem deprecatedItem = new DeprecatedItem().setItem(item, item.getMetadata());
         addDeprecatedItem(deprecatedItem);
         return deprecatedItem;
     }
@@ -52,8 +52,8 @@ public class DeprecatedItems {
      */
     @Nullable
     public static DeprecatedItem getItem(ItemStack item) {
-        DeprecatedItem found = items.stream().filter((dep) -> dep.matches(item, item.getItemDamage())).findFirst().orElse(null);
-        if (found == null) found = items.stream().filter((dep) -> dep.matches(item, -1)).findFirst().orElse(null);
+        DeprecatedItem found = items.stream().filter((dep) -> dep.matches(item, item.getMetadata())).findFirst().orElse(null);
+        if (found == null) found = items.stream().filter((dep) -> dep.matches(item, WILDCARD_META)).findFirst().orElse(null);
 
         return found;
     }
@@ -64,7 +64,7 @@ public class DeprecatedItems {
 
         DeprecatedAPI.LOGGER.warn("DeprecatedAPI is installed. The following items are deprecated:");
 
-        items.forEach((dep) -> sayDeprecated(dep.stack.getItem().getRegistryName(), dep.stack.getItemDamage()));
+        items.forEach((dep) -> sayDeprecated(dep.stack.getItem().getRegistryName(), dep.stack.getMetadata()));
 
         DeprecatedAPI.LOGGER.warn("End Deprecated Items.");
     }

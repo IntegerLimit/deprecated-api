@@ -11,10 +11,11 @@ import java.util.List;
 
 public class DeprecatedBlocks {
     private static final List<DeprecatedBlock> blocks = new ArrayList<>();
+    public static final int WILDCARD_META = -1;
 
     @SuppressWarnings({"unused", "UnusedReturnValue"})
     public static DeprecatedBlock addDeprecatedBlock(Block block) {
-        return addDeprecatedBlock(block, DeprecatedItems.WILDCARD_META);
+        return addDeprecatedBlock(block, WILDCARD_META);
     }
 
     @SuppressWarnings({"unused", "UnusedReturnValue"})
@@ -42,7 +43,10 @@ public class DeprecatedBlocks {
      */
     @Nullable
     public static DeprecatedBlock getBlock(Block block, int meta) {
-        return blocks.stream().filter((dep) -> dep.matches(block, meta)).findFirst().orElse(null);
+        DeprecatedBlock found = blocks.stream().filter((dep) -> dep.matches(block, meta)).findFirst().orElse(null);
+        if (found == null) found = blocks.stream().filter((dep) -> dep.matches(block, WILDCARD_META)).findFirst().orElse(null);
+
+        return found;
     }
 
     public static void logDeprecations() {
@@ -57,7 +61,7 @@ public class DeprecatedBlocks {
     }
 
     private static void sayDeprecated(ResourceLocation name, int meta) {
-        if (meta == DeprecatedItems.WILDCARD_META)
+        if (meta == WILDCARD_META)
             DeprecatedAPI.LOGGER.warn("Registry Name: {}, with any meta.", name);
 
         else
