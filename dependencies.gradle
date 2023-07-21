@@ -22,6 +22,12 @@ dependencies {
     } else {
         compileOnly "CraftTweaker2:CraftTweaker2-MC1120-Main:${crafttweaker_version}"
     }
+    if (project.debug_colorfultooltips.toBoolean()) {
+        implementation rfg.deobf("curse.maven:colorful-tooltips-890939:${colorfultooltips_id}")
+        runtimeOnly rfg.deobf("curse.maven:configurator-882624:${configurator_id}")
+    } else {
+        compileOnly rfg.deobf("curse.maven:colorful-tooltips-890939:${colorfultooltips_id}")
+    }
     // Local jar for groovy
     if (project.debug_groovyscript.toBoolean()) {
         implementation files("libs/groovyscript-0.5.1.jar")
