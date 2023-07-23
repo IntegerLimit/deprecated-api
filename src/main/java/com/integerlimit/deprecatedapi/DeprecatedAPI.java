@@ -30,6 +30,7 @@ public class DeprecatedAPI {
     public void preInit(FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new EventHandler());
+        Registry.preInit();
     }
 
     @Mod.EventHandler
