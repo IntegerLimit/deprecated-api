@@ -36,16 +36,8 @@ public class DeprecatedAPI {
     @Mod.EventHandler
     @SuppressWarnings("unused")
     public void init(FMLInitializationEvent event) {
-        /* Tests */
-        DeprecatedItems.addDeprecatedItem(Items.COOKED_BEEF).setTooltipMessage("Steak Sucks!");
-        DeprecatedBlocks.addDeprecatedBlock(Blocks.DIRT).setTOPWailaMessage("Use Coarse Dirt instead!").setTooltipMessage("Dirt Sucks!");
-        DeprecatedItems.addDeprecatedItem(Items.DIAMOND_SWORD);
-        DeprecatedBlocks.addDeprecatedBlock(Blocks.CONCRETE).setMessages("Concrete is disabled for now.");
-        DeprecatedBlocks.addDeprecatedBlock(Blocks.CONCRETE, 1).setMessages("This Concrete is disabled forever.");
-        DeprecatedBlocks.addDeprecatedBlock(Blocks.STONE).setMessages("Dead");
-        DeprecatedItems.addDeprecatedItem(Items.STONE_SWORD).setTooltipMessage("Worst");
-        DeprecatedItems.addDeprecatedItem(Items.COAL).setTooltipMessage("HOT!!!");
-        DeprecatedItems.addDeprecatedItem(Items.COAL, 1).setTooltipMessage("wood");
+        // Tests:
+        test();
     }
 
     @Mod.EventHandler
@@ -59,6 +51,19 @@ public class DeprecatedAPI {
         // Log deprecations
         DeprecatedItems.logDeprecations();
         DeprecatedBlocks.logDeprecations();
+    }
+
+    private static void test() {
+        /* Tests */
+        DeprecatedItems.addDeprecatedItem(Items.COOKED_BEEF).setTooltipMessage("Steak Sucks!");
+        DeprecatedBlocks.addDeprecatedBlock(Blocks.DIRT).setTOPWailaMessage("Use Coarse Dirt instead!").setTooltipMessage("Dirt Sucks!");
+        DeprecatedItems.addDeprecatedItem(Items.DIAMOND_SWORD);
+        DeprecatedBlocks.addDeprecatedBlock(Blocks.CONCRETE).setMessages("Concrete is disabled for now.");
+        DeprecatedBlocks.addDeprecatedBlock(Blocks.CONCRETE, 1).setMessages("This Concrete is disabled forever.");
+        DeprecatedBlocks.addDeprecatedBlock(Blocks.STONE).setMessages("Dead");
+        DeprecatedItems.addDeprecatedItem(Items.STONE_SWORD).setTooltipMessage("Worst");
+        DeprecatedItems.addDeprecatedItem(Items.COAL).setTooltipMessage("HOT!!!");
+        DeprecatedItems.addDeprecatedItem(Items.COAL, 1).setTooltipMessage("wood");
     }
 
     /* Might be wanted later if making command for reload
